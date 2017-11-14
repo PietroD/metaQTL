@@ -1,0 +1,29 @@
+---
+title: "metaQTL"
+author: "Pietro Delfino"
+date: "14 novembre 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(dplyr)
+library(readxl)
+opts_knit$set(root.dir = "X:/BIOINFORMATICS/Dropbox/PETER/METAQTL/QTLDB/analisi_mqtl/analisi_mqtl_070317/dataset_trascrittomica/")
+```
+
+## Load AFI file
+
+
+```{r Annotation Families Integrated, warning=FALSE}
+afi_original <- read_excel("Annotation_Families_Integrated_2016.xlsx")
+kable(head(afi_original), caption = "AFI file", align="l")
+v2_annotation <- read.table("V2.1.bed", sep="\t")
+kable(head(v2_annotation), caption="V2 annotation", align="l")
+```
+Le colonne con le posizioni corrette sembrano essere la 2 e la 3
+
+
+
+
