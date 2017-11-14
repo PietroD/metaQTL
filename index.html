@@ -125,6 +125,7 @@ $(document).ready(function () {
 
 <div id="load-afi-file" class="section level2">
 <h2>Load AFI file</h2>
+<p>What I am trying to do here is to see if I can use annotation V2 to annotate the genes in QTL and metaQTL intervals. Different to what I did previously, when I was using annotation V1 on structural annotation 12X.2. That way I was keeping some genes out.</p>
 <pre class="r"><code>afi_original &lt;- read_excel(&quot;Annotation_Families_Integrated_2016.xlsx&quot;)
 kable(head(afi_original), caption = &quot;AFI file&quot;, align=&quot;l&quot;)</code></pre>
 <table>
@@ -388,7 +389,72 @@ kable(head(v2_annotation), caption=&quot;V2 annotation&quot;, align=&quot;l&quot
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>### le colonne con le posizioni corrette sembrano essere la 2 e la 3</code></pre>
+<p>The columns with the correct positions are 2 and 3. I keep only those columns.</p>
+<pre class="r"><code>v2_annotation &lt;- select(v2_annotation, V1, V2, V3, V4, V13, V14)
+kable(head(v2_annotation), caption=&quot;V2 annotation cleaned&quot;, align=&quot;l&quot;)</code></pre>
+<table>
+<caption>V2 annotation cleaned</caption>
+<thead>
+<tr class="header">
+<th align="left">V1</th>
+<th align="left">V2</th>
+<th align="left">V3</th>
+<th align="left">V4</th>
+<th align="left">V13</th>
+<th align="left">V14</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">chr1</td>
+<td align="left">10730</td>
+<td align="left">27597</td>
+<td align="left">VIT_201s0011g00010.1</td>
+<td align="left">VIT_201s0011g00010</td>
+<td align="left">general transcription factor iie subunit 1-like</td>
+</tr>
+<tr class="even">
+<td align="left">chr1</td>
+<td align="left">33170</td>
+<td align="left">36056</td>
+<td align="left">VIT_201s0011g00030.1</td>
+<td align="left">VIT_201s0011g00030</td>
+<td align="left">act domain-containing protein</td>
+</tr>
+<tr class="odd">
+<td align="left">chr1</td>
+<td align="left">46793</td>
+<td align="left">47258</td>
+<td align="left">VIT_201s0011g00040.1</td>
+<td align="left">VIT_201s0011g00040</td>
+<td align="left">unnamed protein product [Vitis vinifera]</td>
+</tr>
+<tr class="even">
+<td align="left">chr1</td>
+<td align="left">48555</td>
+<td align="left">52702</td>
+<td align="left">VIT_201s0011g00050.3</td>
+<td align="left">VIT_201s0011g00050</td>
+<td align="left">heat shock protein binding protein</td>
+</tr>
+<tr class="odd">
+<td align="left">chr1</td>
+<td align="left">48555</td>
+<td align="left">58142</td>
+<td align="left">VIT_201s0011g00050.1</td>
+<td align="left">VIT_201s0011g00050</td>
+<td align="left">heat shock protein binding protein</td>
+</tr>
+<tr class="even">
+<td align="left">chr1</td>
+<td align="left">48555</td>
+<td align="left">58142</td>
+<td align="left">VIT_201s0011g00050.2</td>
+<td align="left">VIT_201s0011g00050</td>
+<td align="left">heat shock protein binding protein</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

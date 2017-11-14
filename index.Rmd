@@ -15,14 +15,30 @@ opts_knit$set(root.dir = "X:/BIOINFORMATICS/Dropbox/PETER/METAQTL/QTLDB/analisi_
 
 ## Load AFI file
 
+What I am trying to do here is to see if I can use annotation V2 to annotate the genes in QTL and metaQTL intervals. Different to what I did previously, when I was using annotation V1 on structural annotation 12X.2. That way I was keeping some genes out.
 
-```{r Annotation Families Integrated, warning=FALSE}
+```{r Annotations, warning=FALSE}
 afi_original <- read_excel("Annotation_Families_Integrated_2016.xlsx")
 kable(head(afi_original), caption = "AFI file", align="l")
 v2_annotation <- read.table("V2.1.bed", sep="\t")
 kable(head(v2_annotation), caption="V2 annotation", align="l")
 ```
-Le colonne con le posizioni corrette sembrano essere la 2 e la 3
+
+The columns with the correct positions are 2 and 3. I keep only those columns.
+
+```{r, warning=FALSE}
+v2_annotation <- select(v2_annotation, V1, V2, V3, V4, V13, V14)
+v2_annotation <- rename(v2_annotation, chr=V1, start=V2, end=V3, transcript=V4, gene=V13, annotation=V14)
+kable(head(v2_annotation), caption="V2 annotation cleaned", align="l")
+```
+
+I keep only those rows with the genes, exluding the transcripts.
+Brilliant matching .1 with regex (escaped with []).
+
+```{r, warning=FALSE}
+v2_annotation %>% dplyr::filter(grepl('[.]1', transcript)) %>% select(gene, chr, start, end, annotation) -> v2_annotation
+kable(head(v2_annotation), caption="V2 annotation no transcripts", align="l")
+```
 
 
 
